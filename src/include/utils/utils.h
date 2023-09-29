@@ -14,4 +14,7 @@ std::string str_join_int_stream(std::vector<int> &ints);
 
 long add(long a, long b);
 
+void raw_for_loop(std::vector<int> nums);
+void for_each_loop(std::vector<int> nums);
+
 #endif  // GTEST_BENCHMARK_DEMO_UTILS_H

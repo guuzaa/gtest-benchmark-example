@@ -13,7 +13,7 @@ static void DoSetup(const benchmark::State &state) {
 }
 
 static void DoSetupInt(const benchmark::State &state) {
-  constexpr int len = 100;
+  constexpr int len = 10000;
   ints.reserve(len);
   int begin = 0;
   std::generate_n(ints.begin(), len, [&]() { return begin++; });
@@ -54,6 +54,22 @@ static void BM_Join_IntStream(benchmark::State &state) {
   }
 }
 
+static void BM_Raw_For_Loop(benchmark::State &state) {
+  // Perform setup here
+  for (auto _ : state) {
+    // This code gets timed
+    raw_for_loop(ints);
+  }
+}
+
+static void BM_For_each_Loop(benchmark::State &state) {
+  // Perform setup here
+  for (auto _ : state) {
+    // This code gets timed
+    for_each_loop(ints);
+  }
+}
+
 BENCHMARK(BM_Join)->Setup(DoSetup)->Teardown(DoTeardown);
 
 BENCHMARK(BM_JoinStream)->Setup(DoSetup)->Teardown(DoTeardown);
@@ -61,6 +77,10 @@ BENCHMARK(BM_JoinStream)->Setup(DoSetup)->Teardown(DoTeardown);
 BENCHMARK(BM_Join_Int)->Setup(DoSetupInt)->Teardown(DoTeardown);
 
 BENCHMARK(BM_Join_IntStream)->Setup(DoSetupInt)->Teardown(DoTeardown);
+
+BENCHMARK(BM_Raw_For_Loop)->Setup(DoSetupInt)->Teardown(DoTeardown);
+
+BENCHMARK(BM_For_each_Loop)->Setup(DoSetupInt)->Teardown(DoTeardown);
 
 // Run the benchmark
 BENCHMARK_MAIN();
