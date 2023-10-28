@@ -37,6 +37,8 @@ std::string str_join_int_stream(std::vector<int> &ints) {
 
 long add(long a, long b) { return a + b; }
 
+size_t fib(size_t n) { return n < 2 ? n : fib(n - 1) + fib(n - 2); }
+
 void raw_for_loop(std::vector<int> nums) {
   for (auto &num : nums) {
     num++;

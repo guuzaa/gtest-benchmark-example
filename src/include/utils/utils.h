@@ -13,6 +13,7 @@ std::string str_join_stream(std::vector<std::string> &strs);
 std::string str_join_int_stream(std::vector<int> &ints);
 
 long add(long a, long b);
+size_t fib(size_t n);
 
 void raw_for_loop(std::vector<int> nums);
 void for_each_loop(std::vector<int> nums);

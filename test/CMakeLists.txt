@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
+
+enable_testing()
+
 file(GLOB_RECURSE test_files */*test.cpp)
 
 add_executable(
@@ -17,6 +20,8 @@ set_target_properties(utils_test
         DISCOVERY_TIMEOUT  # how long to wait (in seconds) before crashing
         120
 )
+
+add_test(NAME utils_test COMMAND utils_test)
 
 
 file(GLOB_RECURSE bench_files */*bench.cpp)
